@@ -89,13 +89,13 @@ for i, v in enumerate(genres_count.values()):
 ```
     
 
-##### Observations:
+## Observations:
 
 There are high number of movies from genre Drama & Comedy. So, they might create abias toward the movies which are from these genres.
 
 Film-noir & IMAX are the least popular category for films
 
-##### Defining a function to calculate the Euclidean Distance between two points
+## Defining a function to calculate the Euclidean Distance between two points
 ```
 def euclidean_distance(person1,person2):
     #Getting details of person1 and person2
@@ -117,7 +117,7 @@ Check whether this function works by passing similar ID, the Corerelation should
 euclidean_distance(3,3) 
 ```
 
-##### Pearson Correlation Score 
+# Pearson Correlation Score 
 
 * Correlation between sets of data is a measure of how well they are related. It shows the linear relationship between two sets of data. In simple terms, it answers the question, Can I draw a line graph to represent the data?
 
@@ -125,7 +125,7 @@ euclidean_distance(3,3)
 
 * Slightly better than Euclidean because it addresses the the situation where the data isn't normalised. Like a User is giving high movie ratings in comparison to AVERAGE user.
 
-##### Defining a function to calculate the Pearson Correlation Score between two points
+## Defining a function to calculate the Pearson Correlation Score between two points
 ```
 def pearson_score(person1,person2):
     
@@ -182,7 +182,7 @@ topMatches(1,n=3) ## Getting 3 most similar Users for Example
 Gets recommendations for a person by using a weighted average of every other user's rankings
 
 
-# Defining a function to get the recommendations
+## Defining a function to get the recommendations
 ```
 def getRecommendation(personId, similarity=pearson_score):
     '''
@@ -234,9 +234,7 @@ taking the User_Id as input and recommending movies for the user
 user_id = int(input("Enter Your UserId: "))
 
 recommended_movies = getRecommendation(user_id)
-print("____________________________________________________")
 print("\n Recommended Movies: User {}".format(user_id))
-print("____________________________________________________")
 print(*recommended_movies, sep='\n')
-print("____________________________________________________")
+
 ```
