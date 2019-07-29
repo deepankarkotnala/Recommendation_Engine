@@ -241,3 +241,5 @@ print(*recommended_movies, sep='\n')
 print("____________________________________________________")
 
 ```
+
+![alt text](https://github.com/deepankarkotnala/Recommendation_Engine/blob/master/images/Output.JPG)
