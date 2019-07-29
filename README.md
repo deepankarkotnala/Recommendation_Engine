@@ -3,21 +3,21 @@ A Movie Recommendation Engine based on collaborative filtering to predict the na
 
 
 ##### Import Packages
-```
+```python
 from math import sqrt
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
 ```
 ##### Getting more than one output Line
-```
+```python
 from IPython.core.interactiveshell import InteractiveShell
 InteractiveShell.ast_node_interactivity = "all"
 ```
 
 
 ##### Getting the Dataset
-```
+```python
 movies= pd.read_csv(r"D:\iiitB\Python\Recommendation_Engine\movies.csv") # -------- nrows=5000)
 movies.head()
 
@@ -30,49 +30,50 @@ tags.head()
 
 
 Deleting unnecessary columns [Not using the timestamp column for our analysis in the meanwhile]
-```
+```python
 del tags['timestamp']
 tags.head()
 ```
 
 Having a look at the columns of movies df
-```
+```python
 movies.info()
 ```
 
 Having a look at the distribution of ratings in ratings df
-```
+```python
 ratings['rating'].describe(include='all')
 
 ratings.groupby('rating')['movieId'].nunique()
 # %matplotlib inline
 ratings.hist(column='rating', figsize=(6,6), bins=5, grid=False, edgecolor='black')
-
+```
 ![alt text](https://github.com/deepankarkotnala/Recommendation_Engine/blob/master/images/Plot_1.JPG)
-
+```python
 tag_counts = tags['tag'].value_counts()
 tag_counts[:15]
 tag_counts[:15].plot(kind='bar' , figsize=(6,6), edgecolor='black')
-
+```
 ![alt text](https://github.com/deepankarkotnala/Recommendation_Engine/blob/master/images/Plot_2.JPG)
 
+```python
 movies['movieId'].count()
 ```
 
 Removing movies with no genre
-```
+```python
 genre_filter= (movies['genres'] == '(no genres listed)')
 
 movies=movies[~genre_filter]
 ```
 ###### Because removing filtered rows does not reindex the dataframe, so we have to reindex the dataframe by our own
 
-```
+```python
 movies=movies.reset_index(drop=True)  
 ```
 
 Checking total genres present in DataSet
-```
+```python
 genres_count= {}
 for row in range(movies['movieId'].count()):
     for genre in movies['genres'][row].split("|"):
@@ -82,7 +83,7 @@ for row in range(movies['movieId'].count()):
 genres_count
 ```
 
-```
+```python
 fig, ax = plt.subplots(figsize=(15,10))
 plt.barh(range(len(genres_count)), list(genres_count.values()))
 plt.yticks(range(len(genres_count)),list(genres_count.keys()))
@@ -107,7 +108,7 @@ Film-noir & IMAX are the least popular category for films
 * Value varies between 0 to 1, where closeness to 1 implies higher similarity.
 
 ## Defining a function to calculate the Euclidean Distance between two points
-```
+```python
 def euclidean_distance(person1,person2):
     #Getting details of person1 and person2
     df_first= ratings.loc[ratings['userId']==person1]
@@ -124,7 +125,7 @@ def euclidean_distance(person1,person2):
     return 1/(1+sum_of_squares)
 ``` 
 Check whether this function works by passing similar ID, the Corerelation should be 1
-```
+```python
 euclidean_distance(3,3) 
 ```
 
@@ -137,7 +138,7 @@ euclidean_distance(3,3)
 * Slightly better than Euclidean because it addresses the the situation where the data isn't normalised. Like a User is giving high movie ratings in comparison to AVERAGE user.
 
 ## Defining a function to calculate the Pearson Correlation Score between two points
-```
+```python
 def pearson_score(person1,person2):
     
     #Get detail for Person1 and Person2
@@ -172,14 +173,14 @@ def pearson_score(person1,person2):
     return r
 ```
 Checking function by passing similar ID, Output should be 1
-```
+```python
 pearson_score(1,1)
 ```
 
 ### Getting the results based on Pearson Score
 Returns the best matches for person from the prefs dictionary.
 Number of results and similarity function are optional params.
-```
+```python
 def topMatches(personId,n=5,similarity=pearson_score):
     scores=[(similarity(personId,other),other) for other in ratings.loc[ratings['userId']!=personId]['userId']]
     # Sort the list so the highest scores appear at the top
@@ -192,7 +193,7 @@ topMatches(1,n=3) ## Getting 3 most similar Users for Example
 
 ## Defining a function to get the recommendations
 Gets recommendations for a person by using a weighted average of every other user's rankings
-```
+```python
 def getRecommendation(personId, similarity=pearson_score):
     '''
     totals: Dictionary containing sum of product of Movie Ratings by other user multiplied by weight(similarity)
@@ -239,7 +240,7 @@ def getRecommendation(personId, similarity=pearson_score):
 Returns 20 recommended movie for the given UserID
 userId can be ranged from 1 to 671
 taking the User_Id as input and recommending movies for the user
-```
+```python
 user_id = int(input("Enter Your UserId: "))
 
 recommended_movies = getRecommendation(user_id)
@@ -250,5 +251,5 @@ print(*recommended_movies, sep='\n')
 print("____________________________________________________")
 
 ```
-#### Sample Output
+#### Sample Output:
 ![alt text](https://github.com/deepankarkotnala/Recommendation_Engine/blob/master/images/Output.JPG)
