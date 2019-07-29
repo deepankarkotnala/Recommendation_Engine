@@ -234,7 +234,10 @@ taking the User_Id as input and recommending movies for the user
 user_id = int(input("Enter Your UserId: "))
 
 recommended_movies = getRecommendation(user_id)
-print("\n Recommended Movies: User {}".format(user_id))
+print("____________________________________________________")
+print("\nRecommended Movies: User {}".format(user_id))
+print("____________________________________________________")
 print(*recommended_movies, sep='\n')
+print("____________________________________________________")
 
 ```
