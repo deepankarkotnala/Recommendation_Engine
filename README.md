@@ -48,9 +48,13 @@ ratings.groupby('rating')['movieId'].nunique()
 # %matplotlib inline
 ratings.hist(column='rating', figsize=(6,6), bins=5, grid=False, edgecolor='black')
 
+![alt text](https://github.com/deepankarkotnala/Recommendation_Engine/blob/master/images/Plot_1.JPG)
+
 tag_counts = tags['tag'].value_counts()
 tag_counts[:15]
 tag_counts[:15].plot(kind='bar' , figsize=(6,6), edgecolor='black')
+
+![alt text](https://github.com/deepankarkotnala/Recommendation_Engine/blob/master/images/Plot_2.JPG)
 
 movies['movieId'].count()
 ```
@@ -87,13 +91,20 @@ plt.title("Genre Popularty")
 for i, v in enumerate(genres_count.values()):
     ax.text(v + 20, i + .10, v)
 ```
-    
+![alt text](https://github.com/deepankarkotnala/Recommendation_Engine/blob/master/images/Plot_3.JPG)
 
 ## Observations:
 
 There are high number of movies from genre Drama & Comedy. So, they might create abias toward the movies which are from these genres.
 
 Film-noir & IMAX are the least popular category for films
+
+## Euclidean Distance Score
+
+** Euclidean Distance is the square root of the sum of squared differences between corresponding elements of the two vectors.
+* Euclidean distance is only appropriate for data measured on the same scale.
+* Distance = 1/(1+sqrt of sum of squares between two points)
+* Value varies between 0 to 1, where closeness to 1 implies higher similarity.
 
 ## Defining a function to calculate the Euclidean Distance between two points
 ```
@@ -165,7 +176,7 @@ Checking function by passing similar ID, Output should be 1
 pearson_score(1,1)
 ```
 
-
+### Getting the results based on Pearson Score
 Returns the best matches for person from the prefs dictionary.
 Number of results and similarity function are optional params.
 ```
@@ -179,10 +190,8 @@ def topMatches(personId,n=5,similarity=pearson_score):
 topMatches(1,n=3) ## Getting 3 most similar Users for Example 
 ```
 
-Gets recommendations for a person by using a weighted average of every other user's rankings
-
-
 ## Defining a function to get the recommendations
+Gets recommendations for a person by using a weighted average of every other user's rankings
 ```
 def getRecommendation(personId, similarity=pearson_score):
     '''
@@ -241,5 +250,5 @@ print(*recommended_movies, sep='\n')
 print("____________________________________________________")
 
 ```
-
+#### Sample Output
 ![alt text](https://github.com/deepankarkotnala/Recommendation_Engine/blob/master/images/Output.JPG)
