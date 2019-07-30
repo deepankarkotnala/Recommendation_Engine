@@ -27,7 +27,7 @@ ratings.head()
 tags= pd.read_csv(r'D:\iiitB\Python\Recommendation_Engine\tags.csv')
 tags.head()
 ```
-
+![alt text](https://github.com/deepankarkotnala/Recommendation_Engine/blob/master/images/Data.JPG)
 
 Deleting unnecessary columns [Not using the timestamp column for our analysis in the meanwhile]
 ```python
