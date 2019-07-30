@@ -129,7 +129,7 @@ Check whether this function works by passing similar ID, the Corerelation should
 euclidean_distance(3,3) 
 ```
 
-# Pearson Correlation Score 
+## Pearson Correlation Score 
 
 * Correlation between sets of data is a measure of how well they are related. It shows the linear relationship between two sets of data. In simple terms, it answers the question, Can I draw a line graph to represent the data?
 
@@ -236,7 +236,7 @@ def getRecommendation(personId, similarity=pearson_score):
         return list(np.array(movies[movies['movieId'].isin(recommendedId)]['title'])[:20])
 ``` 
     
-# Getting the Recommendation
+## Getting the Recommendation
 Returns 20 recommended movie for the given UserID
 userId can be ranged from 1 to 671
 taking the User_Id as input and recommending movies for the user
