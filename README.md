@@ -1,5 +1,9 @@
 ## Recommendation Engine
 A Movie Recommendation Engine based on collaborative filtering to predict the name of the movie based upon the reviews of the other critics having similar taste.
+![alt text](https://github.com/deepankarkotnala/Recommendation_Engine/blob/master/images/movie_recommendation.png)
+__________________________________________________________________________________________________________
+
+It's pretty clear from the below image that how a recommendation system works. Well, there are many more types of recommendation systems and below is just an example of an item-based recommendation system.
 
 ![alt text](https://github.com/deepankarkotnala/Recommendation_Engine/blob/master/images/recommendation_system.png)
 
